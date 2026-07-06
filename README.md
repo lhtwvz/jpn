@@ -1,10 +1,11 @@
-# Japan Trip Countdown
+# JPY Japan Trip Countdown
 
-Minimal Japanese-style countdown for GitHub Pages.
+Mobile-first minimalist Japanese countdown for GitHub Pages.
 
-Includes:
+Features:
+- Fits on one mobile screen
 - Daily countdown to September 1, 2026
-- One motivational Japanese phrase each day
+- One motivational Japanese phrase
 - Romaji and English meaning
 - One kanji to learn each day
 - Clean modern typography
