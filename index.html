@@ -2,138 +2,142 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Japan Trip Countdown</title>
   <style>
     :root {
       --bg: #faf8f3;
       --card: #fffdf8;
-      --ink: #181818;
-      --muted: #77736b;
-      --line: #e4ded2;
-      --accent: #b33a3a;
+      --ink: #171717;
+      --muted: #746f67;
+      --line: #e7dfd2;
+      --accent: #b43a3a;
     }
 
-    * {
-      box-sizing: border-box;
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, "Helvetica Neue", Helvetica, Arial, "Hiragino Sans",
+        "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
     }
 
     body {
-      margin: 0;
-      min-height: 100vh;
-      background: var(--bg);
-      color: var(--ink);
-      font-family:
-        Inter,
-        "Helvetica Neue",
-        Helvetica,
-        Arial,
-        "Hiragino Sans",
-        "Hiragino Kaku Gothic ProN",
-        "Yu Gothic",
-        "Noto Sans JP",
-        sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 22px;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
+        max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
     }
 
     main {
-      width: min(720px, 100%);
-      min-height: 86vh;
+      width: min(430px, 100%);
+      height: min(100svh - 24px, 760px);
+      min-height: 600px;
       background: var(--card);
       border: 1px solid var(--line);
-      padding: clamp(28px, 5vw, 56px);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      padding:16px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      overflow: hidden;
     }
 
     .top {
+      border-bottom: 1px solid var(--line);
+      padding-bottom:8px;
       display: flex;
       justify-content: space-between;
-      gap: 24px;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 20px;
+      align-items: flex-start;
+      gap: 14px;
     }
 
     .label {
       color: var(--muted);
-      font-size: 0.78rem;
-      letter-spacing: 0.2em;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
     }
 
     h1 {
       margin: 0;
+      font-size:0;
       font-weight: 500;
-      font-size: clamp(2.1rem, 6vw, 4.5rem);
-      letter-spacing: -0.07em;
-      line-height: 0.92;
+      letter-spacing: -0.065em;
+      line-height: 0.95;
     }
 
     .date {
       color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.5;
+      font-size: 0.72rem;
+      line-height: 1.35;
       text-align: right;
-      max-width: 210px;
+      max-width: 125px;
+      padding-top: 2px;
     }
 
     .center {
+      display: grid;
+      place-items: center;
       text-align: center;
-      padding: 46px 0;
+      min-height: 0;
+      padding: 12px 0;
     }
 
     .days {
-      font-size: clamp(5.8rem, 24vw, 13rem);
-      font-weight: 700;
-      letter-spacing: -0.1em;
+      font-size: clamp(5.2rem, 31vw, 8.6rem);
+      font-weight: 730;
+      letter-spacing: -0.11em;
       line-height: 0.82;
     }
 
     .days-label {
-      margin-top: 18px;
+      margin-top: 12px;
       color: var(--muted);
-      font-size: 0.82rem;
-      letter-spacing: 0.24em;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
     }
 
     .phrase {
-      margin-top: 42px;
-      font-size: clamp(1.55rem, 4.8vw, 3rem);
-      font-weight: 400;
-      letter-spacing: -0.04em;
-      line-height: 1.25;
+      margin-top:16px;
+      font-size: clamp(1.25rem, 6vw, 1.95rem);
+      font-weight: 430;
+      letter-spacing: -0.045em;
+      line-height: 1.18;
     }
 
     .romaji {
-      margin-top: 12px;
+      margin-top: 10px;
       color: var(--muted);
-      font-size: 0.98rem;
+      font-size: 0.82rem;
+      line-height: 1.25;
     }
 
     .meaning {
-      margin-top: 6px;
+      margin: 6px auto 0;
       color: var(--muted);
-      font-size: 0.98rem;
+      font-size: 0.82rem;
+      line-height: 1.3;
+      max-width: 310px;
     }
 
     .bottom {
       border-top: 1px solid var(--line);
-      padding-top: 24px;
+      padding-top:8px;
       display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 28px;
+      grid-template-columns: 96px 1fr;
+      gap: 14px;
       align-items: center;
     }
 
     .kanji {
       color: var(--accent);
-      font-size: clamp(5rem, 17vw, 8.6rem);
+      font-size: clamp(4.1rem, 21vw, 6.1rem);
       font-weight: 300;
       line-height: 0.9;
       text-align: center;
@@ -141,52 +145,66 @@
 
     .kanji-info {
       color: var(--muted);
-      font-size: 0.98rem;
-      line-height: 1.65;
+      font-size: 0.78rem;
+      line-height: 1.45;
+      min-width: 0;
     }
 
     .kanji-title {
       color: var(--ink);
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 4px;
+      font-size: 0.9rem;
+      font-weight: 650;
+      margin-bottom: 2px;
     }
 
-    button {
-      margin-top: 18px;
-      border: 1px solid var(--line);
-      background: transparent;
-      padding: 10px 14px;
-      border-radius: 999px;
-      color: var(--muted);
-      cursor: pointer;
-      font: inherit;
-      font-size: 0.92rem;
+    .print {
+      display: none;
     }
 
-    button:hover {
-      color: var(--ink);
-      border-color: var(--ink);
-    }
-
-    @media (max-width: 620px) {
+    @media (min-width: 700px) {
       main {
-        min-height: 92vh;
+        width: min(620px, 100%);
+        height: min(88svh, 800px);
+        padding: 42px;
       }
 
-      .top {
-        display: block;
+      .date { max-width: 190px; font-size: 0.9rem; }
+      .label { font-size: 0.78rem; }
+      .bottom { grid-template-columns: 140px 1fr; }
+      .kanji-info { font-size: 0.96rem; }
+      .kanji-title { font-size: 1.1rem; }
+      .print {
+        display: inline-block;
+        margin-top: 14px;
+        border: 1px solid var(--line);
+        background: transparent;
+        padding: 9px 13px;
+        border-radius: 999px;
+        color: var(--muted);
+        cursor: pointer;
+        font: inherit;
+        font-size: 0.9rem;
       }
+    }
 
-      .date {
-        text-align: left;
-        margin-top: 18px;
+    @media (max-height: 680px) {
+      main {
+        height: calc(100svh - 18px);
+        min-height: 0;
+        padding: 16px;
       }
-
+      .top { padding-bottom: 10px; }
+      h1 { font-size: 1.55rem; }
+      .date { font-size: 0.66rem; }
+      .days { font-size: clamp(4.7rem, 29vw, 7.2rem); }
+      .phrase { margin-top: 18px; font-size: 1.22rem; }
+      .romaji, .meaning { font-size: 0.76rem; }
       .bottom {
-        grid-template-columns: 1fr;
-        text-align: center;
+        padding-top: 10px;
+        grid-template-columns: 80px 1fr;
       }
+      .kanji { font-size: 4rem; }
+      .kanji-info { font-size: 0.72rem; line-height: 1.35; }
     }
   </style>
 </head>
@@ -195,17 +213,19 @@
     <section class="top">
       <div>
         <div class="label">日本旅行まで</div>
-        <h1>Japan Trip<br>Countdown</h1>
+        <h1></h1>
       </div>
       <div class="date" id="dateText"></div>
     </section>
 
     <section class="center">
-      <div class="days" id="daysText">--</div>
-      <div class="days-label" id="daysLabel">days to go</div>
-      <div class="phrase" id="phraseJp"></div>
-      <div class="romaji" id="phraseRomaji"></div>
-      <div class="meaning" id="phraseMeaning"></div>
+      <div>
+        <div class="days" id="daysText">--</div>
+        <div class="days-label" id="daysLabel">days to go</div>
+        <div class="phrase" id="phraseJp"></div>
+        <div class="romaji" id="phraseRomaji"></div>
+        <div class="meaning" id="phraseMeaning"></div>
+      </div>
     </section>
 
     <section class="bottom">
@@ -214,8 +234,7 @@
         <div class="kanji-title">Kanji of the day</div>
         Reading: <span id="kanjiReading"></span><br>
         Meaning: <span id="kanjiMeaning"></span><br>
-        Note: <span id="kanjiNote"></span><br>
-        <button id="printButton">Print today’s page</button>
+        
       </div>
     </section>
   </main>
@@ -233,8 +252,7 @@
             "kanji": [
                   "日",
                   "にち / ひ",
-                  "sun; day",
-                  "日本 means Japan: “origin of the sun.”"
+                  "sun; day"
             ]
       },
       {
@@ -248,8 +266,7 @@
             "kanji": [
                   "本",
                   "ほん",
-                  "book; origin",
-                  "日本 = Japan."
+                  "book; origin"
             ]
       },
       {
@@ -263,8 +280,7 @@
             "kanji": [
                   "旅",
                   "たび",
-                  "trip; travel",
-                  "旅行 means travel."
+                  "trip; travel"
             ]
       },
       {
@@ -278,8 +294,7 @@
             "kanji": [
                   "行",
                   "いく / こう",
-                  "go",
-                  "行きます means “I go.”"
+                  "go"
             ]
       },
       {
@@ -293,8 +308,7 @@
             "kanji": [
                   "空",
                   "そら / くう",
-                  "sky; empty",
-                  "空港 means airport."
+                  "sky; empty"
             ]
       },
       {
@@ -308,8 +322,7 @@
             "kanji": [
                   "港",
                   "みなと / こう",
-                  "port",
-                  "空港 means airport."
+                  "port"
             ]
       },
       {
@@ -323,8 +336,7 @@
             "kanji": [
                   "駅",
                   "えき",
-                  "station",
-                  "駅はどこですか？ = Where is the station?"
+                  "station"
             ]
       },
       {
@@ -338,8 +350,7 @@
             "kanji": [
                   "道",
                   "みち / どう",
-                  "road; way",
-                  "道 means road or path."
+                  "road; way"
             ]
       },
       {
@@ -353,743 +364,693 @@
             "kanji": [
                   "山",
                   "やま",
-                  "mountain",
-                  "富士山 = Mt. Fuji."
+                  "mountain"
             ]
       },
       {
             "date": "2026-07-15",
             "daysLeft": 48,
             "phrase": [
-                  "今日の一歩が未来を作る",
-                  "Kyou no ippo ga mirai o tsukuru",
-                  "Today’s step creates the future."
+                  "ゆっくりでも大丈夫",
+                  "Yukkuri demo daijoubu",
+                  "It is okay to go slowly."
             ],
             "kanji": [
                   "川",
                   "かわ",
-                  "river",
-                  "Common in place names."
+                  "river"
             ]
       },
       {
             "date": "2026-07-16",
             "daysLeft": 47,
             "phrase": [
-                  "ゆっくりでも大丈夫",
-                  "Yukkuri demo daijoubu",
-                  "It is okay to go slowly."
+                  "心配より楽しみを選ぼう",
+                  "Shinpai yori tanoshimi o erabou",
+                  "Choose excitement over worry."
             ],
             "kanji": [
                   "海",
                   "うみ",
-                  "sea",
-                  "Good for travel scenery."
+                  "sea"
             ]
       },
       {
             "date": "2026-07-17",
             "daysLeft": 46,
             "phrase": [
-                  "心配より楽しみを選ぼう",
-                  "Shinpai yori tanoshimi o erabou",
-                  "Choose excitement over worry."
+                  "準備も旅の一部",
+                  "Junbi mo tabi no ichibu",
+                  "Preparation is part of the trip."
             ],
             "kanji": [
                   "食",
                   "たべる / しょく",
-                  "eat; food",
-                  "食べます = I eat."
+                  "eat; food"
             ]
       },
       {
             "date": "2026-07-18",
             "daysLeft": 45,
             "phrase": [
-                  "準備も旅の一部",
-                  "Junbi mo tabi no ichibu",
-                  "Preparation is part of the trip."
+                  "日本語を少しずつ",
+                  "Nihongo o sukoshi zutsu",
+                  "Japanese, little by little."
             ],
             "kanji": [
                   "飲",
                   "のむ / いん",
-                  "drink",
-                  "飲みます = I drink."
+                  "drink"
             ]
       },
       {
             "date": "2026-07-19",
             "daysLeft": 44,
             "phrase": [
-                  "新しい言葉を覚えよう",
-                  "Atarashii kotoba o oboeyou",
-                  "Learn a new word."
+                  "今日もよくやっている",
+                  "Kyou mo yoku yatte iru",
+                  "You are doing well today."
             ],
             "kanji": [
                   "水",
                   "みず / すい",
-                  "water",
-                  "水をください = Water, please."
+                  "water"
             ]
       },
       {
             "date": "2026-07-20",
             "daysLeft": 43,
             "phrase": [
-                  "日本での自分を想像しよう",
-                  "Nihon de no jibun o souzou shiyou",
-                  "Imagine yourself in Japan."
+                  "心に余白を作ろう",
+                  "Kokoro ni yohaku o tsukurou",
+                  "Make space in your heart."
             ],
             "kanji": [
                   "茶",
                   "ちゃ",
-                  "tea",
-                  "お茶 = tea."
+                  "tea"
             ]
       },
       {
             "date": "2026-07-21",
             "daysLeft": 42,
             "phrase": [
-                  "今日も前に進んでいる",
-                  "Kyou mo mae ni susunde iru",
-                  "You are moving forward today."
+                  "自分のペースでいい",
+                  "Jibun no peesu de ii",
+                  "Your own pace is enough."
             ],
             "kanji": [
                   "人",
                   "ひと / じん",
-                  "person",
-                  "日本人 = Japanese person."
+                  "person"
             ]
       },
       {
             "date": "2026-07-22",
             "daysLeft": 41,
             "phrase": [
-                  "楽しむ準備をしよう",
-                  "Tanoshimu junbi o shiyou",
-                  "Prepare to enjoy it."
+                  "笑顔で準備しよう",
+                  "Egao de junbi shiyou",
+                  "Prepare with a smile."
             ],
             "kanji": [
-                  "女",
-                  "おんな / じょ",
-                  "woman",
-                  "女子 = girl/woman."
+                  "名",
+                  "な / めい",
+                  "name"
             ]
       },
       {
             "date": "2026-07-23",
             "daysLeft": 40,
             "phrase": [
-                  "小さな勇気を持とう",
-                  "Chiisana yuuki o motou",
-                  "Carry a little courage."
+                  "学ぶことを楽しもう",
+                  "Manabu koto o tanoshimou",
+                  "Enjoy learning."
             ],
             "kanji": [
-                  "男",
-                  "おとこ / だん",
-                  "man",
-                  "男性 = male."
+                  "時",
+                  "とき / じ",
+                  "time"
             ]
       },
       {
             "date": "2026-07-24",
             "daysLeft": 39,
             "phrase": [
-                  "知らない場所を楽しもう",
-                  "Shiranai basho o tanoshimou",
-                  "Enjoy unfamiliar places."
+                  "小さな不安を手放そう",
+                  "Chiisana fuan o tebanasou",
+                  "Let go of small worries."
             ],
             "kanji": [
-                  "子",
-                  "こ",
-                  "child",
-                  "Common in words and names."
+                  "今",
+                  "いま / こん",
+                  "now"
             ]
       },
       {
             "date": "2026-07-25",
             "daysLeft": 38,
             "phrase": [
-                  "心を開いて旅しよう",
-                  "Kokoro o hiraite tabi shiyou",
-                  "Travel with an open heart."
+                  "今日を丁寧に過ごそう",
+                  "Kyou o teinei ni sugosou",
+                  "Spend today with care."
             ],
             "kanji": [
-                  "友",
-                  "とも / ゆう",
-                  "friend",
-                  "友だち = friend."
+                  "朝",
+                  "あさ",
+                  "morning"
             ]
       },
       {
             "date": "2026-07-26",
             "daysLeft": 37,
             "phrase": [
-                  "今日の学びを大切に",
-                  "Kyou no manabi o taisetsu ni",
-                  "Value today’s learning."
+                  "心を整えよう",
+                  "Kokoro o totonoeyou",
+                  "Settle your heart."
             ],
             "kanji": [
-                  "名",
-                  "な / めい",
-                  "name",
-                  "名前 = name."
+                  "夜",
+                  "よる / や",
+                  "night"
             ]
       },
       {
             "date": "2026-07-27",
             "daysLeft": 36,
             "phrase": [
-                  "景色を想像してみよう",
-                  "Keshiki o souzou shite miyou",
-                  "Picture the scenery."
+                  "もう少しで日本",
+                  "Mou sukoshi de Nihon",
+                  "Japan is almost here."
             ],
             "kanji": [
-                  "前",
-                  "まえ",
-                  "front; before",
-                  "名前 uses this kanji."
+                  "月",
+                  "つき / げつ",
+                  "moon; month"
             ]
       },
       {
             "date": "2026-07-28",
             "daysLeft": 35,
             "phrase": [
-                  "優しい気持ちで進もう",
-                  "Yasashii kimochi de susumou",
-                  "Move with a gentle heart."
+                  "楽しい未来を迎えよう",
+                  "Tanoshii mirai o mukaeyou",
+                  "Welcome a joyful future."
             ],
             "kanji": [
-                  "時",
-                  "とき / じ",
-                  "time; hour",
-                  "何時？ = what time?"
+                  "金",
+                  "かね / きん",
+                  "money; gold"
             ]
       },
       {
             "date": "2026-07-29",
             "daysLeft": 34,
             "phrase": [
-                  "できることから始めよう",
-                  "Dekiru koto kara hajimeyou",
-                  "Start with what you can do."
+                  "行く準備はできている",
+                  "Iku junbi wa dekite iru",
+                  "You are ready to go."
             ],
             "kanji": [
-                  "分",
-                  "ふん / ぶん",
-                  "minute; part",
-                  "五分 = five minutes."
+                  "円",
+                  "えん",
+                  "yen"
             ]
       },
       {
             "date": "2026-07-30",
             "daysLeft": 33,
             "phrase": [
-                  "旅の準備を楽しもう",
-                  "Tabi no junbi o tanoshimou",
-                  "Enjoy preparing for the trip."
+                  "いってらっしゃい",
+                  "Itterasshai",
+                  "Go and have a wonderful trip."
             ],
             "kanji": [
-                  "今",
-                  "いま / こん",
-                  "now",
-                  "今 = now."
+                  "買",
+                  "かう",
+                  "buy"
             ]
       },
       {
             "date": "2026-07-31",
             "daysLeft": 32,
             "phrase": [
-                  "新しい自分に会いに行こう",
-                  "Atarashii jibun ni ai ni ikou",
-                  "Go meet a new version of yourself."
+                  "一歩ずつ進もう",
+                  "Ippo zutsu susumou",
+                  "Move forward one step at a time."
             ],
             "kanji": [
-                  "朝",
-                  "あさ",
-                  "morning",
-                  "Good morning = おはよう."
+                  "店",
+                  "みせ / てん",
+                  "shop"
             ]
       },
       {
             "date": "2026-08-01",
             "daysLeft": 31,
             "phrase": [
-                  "焦らず深呼吸しよう",
-                  "Aserazu shinkokyuu shiyou",
-                  "Do not rush; take a deep breath."
+                  "旅はもう始まっている",
+                  "Tabi wa mou hajimatte iru",
+                  "The journey has already begun."
             ],
             "kanji": [
-                  "昼",
-                  "ひる",
-                  "daytime; noon",
-                  "昼ごはん = lunch."
+                  "町",
+                  "まち / ちょう",
+                  "town"
             ]
       },
       {
             "date": "2026-08-02",
             "daysLeft": 30,
             "phrase": [
-                  "日本語を少しずつ",
-                  "Nihongo o sukoshi zutsu",
-                  "Japanese, little by little."
+                  "今日も少し成長しよう",
+                  "Kyou mo sukoshi seichou shiyou",
+                  "Grow a little today."
             ],
             "kanji": [
-                  "夜",
-                  "よる / や",
-                  "night",
-                  "夜 = night."
+                  "車",
+                  "くるま / しゃ",
+                  "car"
             ]
       },
       {
             "date": "2026-08-03",
             "daysLeft": 29,
             "phrase": [
-                  "今日もよくやっている",
-                  "Kyou mo yoku yatte iru",
-                  "You are doing well today."
+                  "小さな努力を重ねよう",
+                  "Chiisana doryoku o kasaneyou",
+                  "Let small efforts build up."
             ],
             "kanji": [
-                  "月",
-                  "つき / げつ",
-                  "moon; month",
-                  "月曜日 = Monday."
+                  "電",
+                  "でん",
+                  "electricity"
             ]
       },
       {
             "date": "2026-08-04",
             "daysLeft": 28,
             "phrase": [
-                  "美しい瞬間を見つけよう",
-                  "Utsukushii shunkan o mitsukeyou",
-                  "Find beautiful moments."
+                  "楽しみを大切にしよう",
+                  "Tanoshimi o taisetsu ni shiyou",
+                  "Cherish what you are looking forward to."
             ],
             "kanji": [
-                  "火",
-                  "ひ / か",
-                  "fire",
-                  "火曜日 = Tuesday."
+                  "話",
+                  "はなす / わ",
+                  "talk"
             ]
       },
       {
             "date": "2026-08-05",
             "daysLeft": 27,
             "phrase": [
-                  "心に余白を作ろう",
-                  "Kokoro ni yohaku o tsukurou",
-                  "Make space in your heart."
+                  "新しい世界へ向かおう",
+                  "Atarashii sekai e mukaou",
+                  "Head toward a new world."
             ],
             "kanji": [
-                  "木",
-                  "き / もく",
-                  "tree; wood",
-                  "木曜日 = Thursday."
+                  "聞",
+                  "きく",
+                  "listen; ask"
             ]
       },
       {
             "date": "2026-08-06",
             "daysLeft": 26,
             "phrase": [
-                  "大切な旅が近づいている",
-                  "Taisetsu na tabi ga chikazuite iru",
-                  "An important trip is getting closer."
+                  "心を軽くして進もう",
+                  "Kokoro o karuku shite susumou",
+                  "Move forward with a light heart."
             ],
             "kanji": [
-                  "金",
-                  "かね / きん",
-                  "money; gold",
-                  "金曜日 = Friday."
+                  "見",
+                  "みる",
+                  "see; look"
             ]
       },
       {
             "date": "2026-08-07",
             "daysLeft": 25,
             "phrase": [
-                  "自分のペースでいい",
-                  "Jibun no peesu de ii",
-                  "Your own pace is enough."
+                  "毎日が準備の一部",
+                  "Mainichi ga junbi no ichibu",
+                  "Every day is part of the preparation."
             ],
             "kanji": [
-                  "円",
-                  "えん",
-                  "yen; circle",
-                  "千円 = 1,000 yen."
+                  "語",
+                  "ご",
+                  "language"
             ]
       },
       {
             "date": "2026-08-08",
             "daysLeft": 24,
             "phrase": [
-                  "新しい音に耳を澄まそう",
-                  "Atarashii oto ni mimi o sumasou",
-                  "Listen for new sounds."
+                  "夢に近づいている",
+                  "Yume ni chikazuite iru",
+                  "You are getting closer to your dream."
             ],
             "kanji": [
-                  "買",
-                  "かう",
-                  "buy",
-                  "買います = I buy."
+                  "何",
+                  "なに / なん",
+                  "what"
             ]
       },
       {
             "date": "2026-08-09",
             "daysLeft": 23,
             "phrase": [
-                  "今日も旅に近づく日",
-                  "Kyou mo tabi ni chikazuku hi",
-                  "Today brings you closer to the trip."
+                  "ゆっくりでも大丈夫",
+                  "Yukkuri demo daijoubu",
+                  "It is okay to go slowly."
             ],
             "kanji": [
-                  "店",
-                  "みせ / てん",
-                  "shop",
-                  "お店 = shop/store."
+                  "大",
+                  "おおきい / だい",
+                  "big"
             ]
       },
       {
             "date": "2026-08-10",
             "daysLeft": 22,
             "phrase": [
-                  "笑顔で準備しよう",
-                  "Egao de junbi shiyou",
-                  "Prepare with a smile."
+                  "心配より楽しみを選ぼう",
+                  "Shinpai yori tanoshimi o erabou",
+                  "Choose excitement over worry."
             ],
             "kanji": [
-                  "町",
-                  "まち / ちょう",
-                  "town",
-                  "町 = town."
+                  "小",
+                  "ちいさい / しょう",
+                  "small"
             ]
       },
       {
             "date": "2026-08-11",
             "daysLeft": 21,
             "phrase": [
-                  "学ぶことを楽しもう",
-                  "Manabu koto o tanoshimou",
-                  "Enjoy learning."
+                  "準備も旅の一部",
+                  "Junbi mo tabi no ichibu",
+                  "Preparation is part of the trip."
             ],
             "kanji": [
-                  "車",
-                  "くるま / しゃ",
-                  "car",
-                  "電車 = train."
+                  "安",
+                  "やすい / あん",
+                  "cheap; peaceful"
             ]
       },
       {
             "date": "2026-08-12",
             "daysLeft": 20,
             "phrase": [
-                  "日本の空気を想像しよう",
-                  "Nihon no kuuki o souzou shiyou",
-                  "Imagine the air in Japan."
+                  "日本語を少しずつ",
+                  "Nihongo o sukoshi zutsu",
+                  "Japanese, little by little."
             ],
             "kanji": [
-                  "電",
-                  "でん",
-                  "electricity",
-                  "電車 = train."
+                  "高",
+                  "たかい / こう",
+                  "expensive; tall"
             ]
       },
       {
             "date": "2026-08-13",
             "daysLeft": 19,
             "phrase": [
-                  "小さな不安を手放そう",
-                  "Chiisana fuan o tebanasou",
-                  "Let go of small worries."
+                  "今日もよくやっている",
+                  "Kyou mo yoku yatte iru",
+                  "You are doing well today."
             ],
             "kanji": [
-                  "話",
-                  "はなす / わ",
-                  "talk; story",
-                  "電話 = telephone."
+                  "新",
+                  "あたらしい / しん",
+                  "new"
             ]
       },
       {
             "date": "2026-08-14",
             "daysLeft": 18,
             "phrase": [
-                  "思い出になる日が来る",
-                  "Omoide ni naru hi ga kuru",
-                  "A day that becomes a memory is coming."
+                  "心に余白を作ろう",
+                  "Kokoro ni yohaku o tsukurou",
+                  "Make space in your heart."
             ],
             "kanji": [
-                  "聞",
-                  "きく",
-                  "listen; ask",
-                  "聞きます = I ask/listen."
+                  "美",
+                  "うつくしい / び",
+                  "beauty"
             ]
       },
       {
             "date": "2026-08-15",
             "daysLeft": 17,
             "phrase": [
-                  "今日を丁寧に過ごそう",
-                  "Kyou o teinei ni sugosou",
-                  "Spend today with care."
+                  "自分のペースでいい",
+                  "Jibun no peesu de ii",
+                  "Your own pace is enough."
             ],
             "kanji": [
-                  "見",
-                  "みる",
-                  "see; look",
-                  "見ます = I see."
+                  "楽",
+                  "たのしい / らく",
+                  "fun; easy"
             ]
       },
       {
             "date": "2026-08-16",
             "daysLeft": 16,
             "phrase": [
-                  "新しい道を楽しもう",
-                  "Atarashii michi o tanoshimou",
-                  "Enjoy the new path."
+                  "笑顔で準備しよう",
+                  "Egao de junbi shiyou",
+                  "Prepare with a smile."
             ],
             "kanji": [
-                  "言",
-                  "いう / げん",
-                  "say; word",
-                  "言葉 = words/language."
+                  "好",
+                  "すき / こう",
+                  "like"
             ]
       },
       {
             "date": "2026-08-17",
             "daysLeft": 15,
             "phrase": [
-                  "心を整えよう",
-                  "Kokoro o totonoeyou",
-                  "Settle your heart."
+                  "学ぶことを楽しもう",
+                  "Manabu koto o tanoshimou",
+                  "Enjoy learning."
             ],
             "kanji": [
-                  "語",
-                  "ご",
-                  "language",
-                  "日本語 = Japanese language."
+                  "心",
+                  "こころ / しん",
+                  "heart; mind"
             ]
       },
       {
             "date": "2026-08-18",
             "daysLeft": 14,
             "phrase": [
-                  "旅先で使う言葉を覚えよう",
-                  "Tabisaki de tsukau kotoba o oboeyou",
-                  "Learn words you will use while traveling."
+                  "小さな不安を手放そう",
+                  "Chiisana fuan o tebanasou",
+                  "Let go of small worries."
             ],
             "kanji": [
-                  "何",
-                  "なに / なん",
-                  "what",
-                  "何ですか？ = What is it?"
+                  "気",
+                  "き",
+                  "spirit; energy"
             ]
       },
       {
             "date": "2026-08-19",
             "daysLeft": 13,
             "phrase": [
-                  "期待を胸に進もう",
-                  "Kitai o mune ni susumou",
-                  "Move forward with anticipation."
+                  "今日を丁寧に過ごそう",
+                  "Kyou o teinei ni sugosou",
+                  "Spend today with care."
             ],
             "kanji": [
-                  "大",
-                  "おおきい / だい",
-                  "big",
-                  "大丈夫 = okay."
+                  "生",
+                  "いきる / せい",
+                  "life; birth"
             ]
       },
       {
             "date": "2026-08-20",
             "daysLeft": 12,
             "phrase": [
-                  "景色はもうすぐそこ",
-                  "Keshiki wa mou sugu soko",
-                  "The scenery is almost there."
+                  "心を整えよう",
+                  "Kokoro o totonoeyou",
+                  "Settle your heart."
             ],
             "kanji": [
-                  "小",
-                  "ちいさい / しょう",
-                  "small",
-                  "小さい = small."
+                  "来",
+                  "くる / らい",
+                  "come"
             ]
       },
       {
             "date": "2026-08-21",
             "daysLeft": 11,
             "phrase": [
-                  "新しい経験を受け入れよう",
-                  "Atarashii keiken o ukeireyou",
-                  "Welcome new experiences."
+                  "もう少しで日本",
+                  "Mou sukoshi de Nihon",
+                  "Japan is almost here."
             ],
             "kanji": [
-                  "安",
-                  "やすい / あん",
-                  "cheap; peaceful",
-                  "安心 = peace of mind."
+                  "日",
+                  "にち / ひ",
+                  "sun; day"
             ]
       },
       {
             "date": "2026-08-22",
             "daysLeft": 10,
             "phrase": [
-                  "今日の自分を信じよう",
-                  "Kyou no jibun o shinjiyou",
-                  "Trust yourself today."
+                  "楽しい未来を迎えよう",
+                  "Tanoshii mirai o mukaeyou",
+                  "Welcome a joyful future."
             ],
             "kanji": [
-                  "高",
-                  "たかい / こう",
-                  "expensive; tall",
-                  "高い = expensive/tall."
+                  "本",
+                  "ほん",
+                  "book; origin"
             ]
       },
       {
             "date": "2026-08-23",
             "daysLeft": 9,
             "phrase": [
-                  "旅は心を広げる",
-                  "Tabi wa kokoro o hirogeru",
-                  "Travel expands the heart."
+                  "行く準備はできている",
+                  "Iku junbi wa dekite iru",
+                  "You are ready to go."
             ],
             "kanji": [
-                  "新",
-                  "あたらしい / しん",
-                  "new",
-                  "新しい = new."
+                  "旅",
+                  "たび",
+                  "trip; travel"
             ]
       },
       {
             "date": "2026-08-24",
             "daysLeft": 8,
             "phrase": [
-                  "もう少しで日本",
-                  "Mou sukoshi de Nihon",
-                  "Japan is almost here."
+                  "いってらっしゃい",
+                  "Itterasshai",
+                  "Go and have a wonderful trip."
             ],
             "kanji": [
-                  "古",
-                  "ふるい / こ",
-                  "old",
-                  "古い = old."
+                  "行",
+                  "いく / こう",
+                  "go"
             ]
       },
       {
             "date": "2026-08-25",
             "daysLeft": 7,
             "phrase": [
-                  "準備は愛情",
-                  "Junbi wa aijou",
-                  "Preparation is love."
+                  "一歩ずつ進もう",
+                  "Ippo zutsu susumou",
+                  "Move forward one step at a time."
             ],
             "kanji": [
-                  "美",
-                  "うつくしい / び",
-                  "beauty",
-                  "美しい = beautiful."
+                  "空",
+                  "そら / くう",
+                  "sky; empty"
             ]
       },
       {
             "date": "2026-08-26",
             "daysLeft": 6,
             "phrase": [
-                  "楽しい未来を迎えよう",
-                  "Tanoshii mirai o mukaeyou",
-                  "Welcome a joyful future."
+                  "旅はもう始まっている",
+                  "Tabi wa mou hajimatte iru",
+                  "The journey has already begun."
             ],
             "kanji": [
-                  "楽",
-                  "たのしい / らく",
-                  "fun; easy",
-                  "楽しい = fun."
+                  "港",
+                  "みなと / こう",
+                  "port"
             ]
       },
       {
             "date": "2026-08-27",
             "daysLeft": 5,
             "phrase": [
-                  "今日の一文字を覚えよう",
-                  "Kyou no hitomoji o oboeyou",
-                  "Learn today’s character."
+                  "今日も少し成長しよう",
+                  "Kyou mo sukoshi seichou shiyou",
+                  "Grow a little today."
             ],
             "kanji": [
-                  "好",
-                  "すき / こう",
-                  "like",
-                  "好き = like."
+                  "駅",
+                  "えき",
+                  "station"
             ]
       },
       {
             "date": "2026-08-28",
             "daysLeft": 4,
             "phrase": [
-                  "新しい朝に感謝しよう",
-                  "Atarashii asa ni kansha shiyou",
-                  "Be grateful for a new morning."
+                  "小さな努力を重ねよう",
+                  "Chiisana doryoku o kasaneyou",
+                  "Let small efforts build up."
             ],
             "kanji": [
-                  "心",
-                  "こころ / しん",
-                  "heart; mind",
-                  "安心 = peace of mind."
+                  "道",
+                  "みち / どう",
+                  "road; way"
             ]
       },
       {
             "date": "2026-08-29",
             "daysLeft": 3,
             "phrase": [
-                  "行く準備はできている",
-                  "Iku junbi wa dekite iru",
-                  "You are ready to go."
+                  "楽しみを大切にしよう",
+                  "Tanoshimi o taisetsu ni shiyou",
+                  "Cherish what you are looking forward to."
             ],
             "kanji": [
-                  "気",
-                  "き",
-                  "spirit; energy",
-                  "元気 = well/energetic."
+                  "山",
+                  "やま",
+                  "mountain"
             ]
       },
       {
             "date": "2026-08-30",
             "daysLeft": 2,
             "phrase": [
-                  "心はもう旅の途中",
-                  "Kokoro wa mou tabi no tochuu",
-                  "Your heart is already traveling."
+                  "新しい世界へ向かおう",
+                  "Atarashii sekai e mukaou",
+                  "Head toward a new world."
             ],
             "kanji": [
-                  "先",
-                  "さき / せん",
-                  "ahead; previous",
-                  "先生 = teacher."
+                  "川",
+                  "かわ",
+                  "river"
             ]
       },
       {
             "date": "2026-08-31",
             "daysLeft": 1,
             "phrase": [
-                  "日本へ出発",
-                  "Nihon e shuppatsu",
-                  "Departure to Japan."
+                  "心を軽くして進もう",
+                  "Kokoro o karuku shite susumou",
+                  "Move forward with a light heart."
             ],
             "kanji": [
-                  "生",
-                  "いきる / せい",
-                  "life; birth",
-                  "先生 uses this kanji."
+                  "海",
+                  "うみ",
+                  "sea"
             ]
       },
       {
             "date": "2026-09-01",
             "daysLeft": 0,
             "phrase": [
-                  "いってらっしゃい",
-                  "Itterasshai",
-                  "Go and have a wonderful trip."
+                  "毎日が準備の一部",
+                  "Mainichi ga junbi no ichibu",
+                  "Every day is part of the preparation."
             ],
             "kanji": [
-                  "来",
-                  "くる / らい",
-                  "come",
-                  "来ます = come."
+                  "食",
+                  "たべる / しょく",
+                  "eat; food"
             ]
       }
 ];
@@ -1101,15 +1062,10 @@
     const calculatedDaysLeft = Math.ceil((targetStart - todayStart) / msPerDay);
 
     let item = daily.find(d => d.daysLeft === calculatedDaysLeft);
-    if (!item) {
-      item = calculatedDaysLeft < 0 ? daily[daily.length - 1] : daily[0];
-    }
+    if (!item) item = calculatedDaysLeft < 0 ? daily[daily.length - 1] : daily[0];
 
     const displayDate = new Date(item.date + "T00:00:00").toLocaleDateString(undefined, {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric"
+      weekday: "short", month: "short", day: "numeric", year: "numeric"
     });
 
     document.getElementById("dateText").textContent = displayDate;
@@ -1129,9 +1085,7 @@
     document.getElementById("kanjiChar").textContent = item.kanji[0];
     document.getElementById("kanjiReading").textContent = item.kanji[1];
     document.getElementById("kanjiMeaning").textContent = item.kanji[2];
-    document.getElementById("kanjiNote").textContent = item.kanji[3];
 
-    document.getElementById("printButton").addEventListener("click", () => window.print());
-  </script>
+    </script>
 </body>
 </html>
